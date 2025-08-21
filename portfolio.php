@@ -9,6 +9,22 @@ include "head.php";
     include "header.php";
     ?>
     <div class="main">
+        <h1>
+            Notre Protfolio
+        </h1>
+        Découvrez nos réalisations et laissez-vous inspirer par nos projets les plus
+        remarquables
+
+        <div id="categories">
+            <div class="actual">Tous</div>
+            <div>Vidéos</div>
+            <div>Design</div>
+            <div>Dev</div>
+            <div>Méca</div>
+        </div>
+    </div>
+    <div class="main">
+        
         <div class="cards">
             <div class="card">
                 <img src="assets/New Website Blue Mockup Instagram - Laptop 1.png" alt="pc-interface" class="illustrating">
