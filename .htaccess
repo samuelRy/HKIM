@@ -1,0 +1,12 @@
+RewriteEngine On
+
+# Allow existingfiles and directories
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Rewrite /something.php to /something
+RewriteRule ^([a-zA-Z0-9_-]+)$ $1.php [L]
+RewriteRule ^([a-zA-Z0-9_-]+)$ $1.html [L]
+
+#Optional handle trailing slashes like /login/
+RewriteRule ^([a-zA-Z0-9_-]+)/$ $1 [L]
