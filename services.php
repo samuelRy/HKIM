@@ -68,6 +68,7 @@ include "head.php";
     include "footer.php";
     ?>
     <script src="script_cards.js"></script>
+    <script src="script2.js"></script>
 </body>
 
 </html>

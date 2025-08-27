@@ -21,11 +21,11 @@
             Contact
         </h3>
         <div>
-            <img src="assets/Phone.png" alt="tel-icon">
+            <img src="assets/Phone.png" alt="tel-icon" class="footer-icon">
             (+229) 01 43 39 34 34
         </div>
         <div>
-            <img src="assets/Map Pin.png" alt="loc-icon">
+            <img src="assets/Map Pin.png" alt="loc-icon" class="footer-icon">
             ZOGBADJE
             Abomey-Calavi
         </div>

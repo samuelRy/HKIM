@@ -19,7 +19,7 @@ include "head.php";
                 digital et mécanique de précision. Votre vision, notre expertise.
             </div>
             <div id="buttons">
-                <button type="button" class="button btn-1">
+                <button type="button" class="button btn-1" onclick="redirect('services')">
                     Découvrir nos services <span>&#8594;</span>
                 </button>
                 <button type="button" class="button btn-2">
@@ -47,19 +47,19 @@ include "head.php";
         <div id="card-hero">
             <div id="card-hero-main">
                 <div>
-                    <img src="assets/camera.png" alt="camera-icon" width="70em" />
+                    <img src="assets/camera.png" alt="camera-icon" width="50rem" />
                     Montage
                 </div>
                 <div>
-                    <img src="assets/stack.png" alt="stack-icon" width="50em" />
+                    <img src="assets/stack.png" alt="stack-icon" width="50rem" />
                     Design
                 </div>
                 <div>
-                    <img src="assets/developer.png" alt="dev-icon" width="50em" />
+                    <img src="assets/developer.png" alt="dev-icon" width="50rem" />
                     Développement
                 </div>
                 <div>
-                    <img src="assets/wrench-tool.png" alt="engine-repair-icon" width="50em" />
+                    <img src="assets/wrench-tool.png" alt="engine-repair-icon" width="50rem" />
                     Mécanique
                 </div>
             </div>
@@ -186,7 +186,7 @@ include "head.php";
 
 
         </div>
-        <button type="button" id="all-services">
+        <button type="button" id="all-services" onclick="redirect('services')">
             Voir tout nos services
         </button>
     </div>
@@ -196,13 +196,14 @@ include "head.php";
         <div>
             <button type="button">
                 Demander un devis gratuit</button>
-            <button type="button">Voir notre portfolio</button>
+            <button type="button" onclick="redirect('portfolio')">Voir notre portfolio</button>
         </div>
     </div>
     <?php
     include "footer.php";
     ?>
-    <!--<script src="script.js"></script>-->
+    <script src="script.js"></script>
+    <script src="script2.js"></script>
 </body>
 
 </html>
