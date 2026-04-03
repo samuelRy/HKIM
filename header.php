@@ -2,7 +2,7 @@
 $currentPage = basename($_SERVER['PHP_SELF']);
 ?>
 <header>
-    <div id="logo">
+    <div class="logo">
         <img src="assets/logo.png" alt="logo-hkim">
     </div>
     <nav id="page_links">

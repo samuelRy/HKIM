@@ -203,7 +203,7 @@ include "head.php";
     include "footer.php";
     ?>
     <script src="script.js"></script>
-    <script src="script2.js"></script>
+    
 </body>
 
 </html>

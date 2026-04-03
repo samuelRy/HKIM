@@ -6,6 +6,6 @@ for (let index = 0; index < 8; index++) {
     a.innerHTML = card.innerHTML;
     a.className = "card";
     cards.appendChild(a);
-    console.log("Child appened" + cards.childElementCount);
+    // console.log("Child appened" + cards.childElementCount);
 
 }

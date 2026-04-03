@@ -1,6 +1,6 @@
 <footer id="footer">
     <div>
-        <div id="logo">
+        <div class="logo">
             <img src="assets/logo.png" alt="logo-hkim">
         </div>
         Nous transformons vos idées en réalité grâce à notre expertise
@@ -11,9 +11,9 @@
         <h3>
             Service
         </h3>
-        Montage video
-        Design graphique
-        Developpement web & mobile
+        Montage video <br />
+        Design graphique <br />
+        Developpement web & mobile <br />
         Mécanique
     </div>
     <div>
