@@ -1,3 +1,20 @@
+<!--
+    services.html — Page des services (version HTML statique)
+
+    Version statique de services.php, utilisée dans le dossier "HKIM html"
+    pour un déploiement sans serveur PHP.
+
+    Structure :
+      1. Navigation         — liens partagés + détection lien actif via page.js
+      2. En-tête de section — titre + description + barre de filtres
+      3. Grille de cartes   — carte modèle clonée par script_cards.js
+      4. Footer             — coordonnées et liens rapides
+
+    Scripts chargés :
+      - script_cards.js : clonage de la carte modèle (x8)
+      - page.js         : marquage du lien actif
+      - ../script2.js   : masquage des libellés nav sur mobile
+-->
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -9,10 +26,17 @@
 </head>
 
 <body>
+
+    <!-- =========================================================
+         NAVIGATION
+    ========================================================== -->
     <header>
+        <!-- Logo -->
         <div class="logo">
             <img src="../assets/logo.png" alt="logo-hkim">
         </div>
+
+        <!-- Liens de navigation — page.js applique "actual" sur le lien courant -->
         <nav id="page_links">
             <a href="index.html">
                 <img src="../assets/home.svg" alt="home-icon">
@@ -32,6 +56,10 @@
             </a>
         </nav>
     </header>
+
+    <!-- =========================================================
+         EN-TÊTE DE SECTION
+    ========================================================== -->
     <div class="main">
         <h1>
             Nos services
@@ -39,6 +67,7 @@
         Des solutions complètes et professionnelles pour tous vos projets créatifs et
         techniques
 
+        <!-- Filtres de catégorie — "actual" = filtre sélectionné -->
         <div id="categories">
             <div class="actual">Tous</div>
             <div>Vidéos</div>
@@ -48,18 +77,29 @@
         </div>
     </div>
 
+    <!-- =========================================================
+         GRILLE DE CARTES SERVICE
+         Carte modèle — clonée 8 fois par script_cards.js
+    ========================================================== -->
     <div class="main">
         <div class="cards">
             <div class="card">
                 <img src="assets/camera.png" alt="camera-icon" width="70em" />
+
+                <!-- Titre du service -->
                 <div class="category">
                     Montage Vidéo Professionnel
                 </div>
+
+                <!-- Description courte -->
                 <div class="description">
                     Création et post-production vidéo de qualité cinématographique pour vos projets marketing,
                     événementiels ou corporate.
                 </div>
+
                 <span class="include">Inclus</span>
+
+                <!-- Prestations incluses -->
                 <div id="details">
                     <div>
                         <img src="assets/check.svg" alt="check-icon" class="check-icon">
@@ -73,8 +113,9 @@
                         <img src="assets/check.svg" alt="check-icon" class="check-icon">
                         Assemblage
                     </div>
-
                 </div>
+
+                <!-- Délai et prix -->
                 <div class="date">
                     <div>
                         <img src="assets/clock-line.svg" alt="clock-icon" class="clock-icon">
@@ -84,11 +125,21 @@
                         50-150mille
                     </div>
                 </div>
-                <div class="btnSvc"><button type="button">Demander un devis <span>&#8594;</span></button></div>
+
+                <!-- Bouton devis -->
+                <div class="btnSvc">
+                    <button type="button">Demander un devis <span>&#8594;</span></button>
+                </div>
             </div>
         </div>
     </div>
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
     <footer id="footer">
+
+        <!-- Colonne 1 : Logo + description -->
         <div>
             <div class="logo">
                 <img src="assets/logo.png" alt="logo-hkim">
@@ -97,6 +148,8 @@
             en montage vidéo, design graphique, développement digital et
             mécanique de précision.
         </div>
+
+        <!-- Colonne 2 : Services -->
         <div>
             <h3>
                 Service
@@ -106,6 +159,8 @@
             Developpement web & mobile <br />
             Mécanique
         </div>
+
+        <!-- Colonne 3 : Contact -->
         <div>
             <h3>
                 Contact
@@ -121,9 +176,14 @@
             </div>
         </div>
     </footer>
+
+    <!-- Clonage automatique des cartes (x8) -->
     <script src="script_cards.js"></script>
+    <!-- Marquage du lien actif -->
     <script src="page.js"></script>
+    <!-- Gestion responsive de la navigation (masquage libellés ≤ 800px) -->
     <script src="../script2.js"></script>
+
 </body>
 
 </html>

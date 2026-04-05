@@ -1,3 +1,21 @@
+<!--
+    portfolio.html — Page portfolio (version HTML statique)
+
+    Version statique de portfolio.php, utilisée dans le dossier "HKIM html"
+    pour un déploiement sans serveur PHP.
+
+    Structure :
+      1. Navigation         — liens partagés + détection lien actif via page.js
+      2. En-tête de section — titre + description + barre de filtres
+      3. Grille de cartes   — carte modèle clonée par script_cards.js
+      4. Footer             — coordonnées et liens rapides
+
+    Scripts chargés :
+      - script_cards.js : clonage de la carte modèle (x8)
+      - page.js         : marquage du lien actif
+
+    Note : le lang est "en" dans l'original — conservé tel quel.
+-->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,10 +27,17 @@
 </head>
 
 <body>
+
+    <!-- =========================================================
+         NAVIGATION
+    ========================================================== -->
     <header>
+        <!-- Logo -->
         <div class="logo">
             <img src="../assets/logo.png" alt="logo-hkim">
         </div>
+
+        <!-- Liens de navigation — page.js applique "actual" sur le lien courant -->
         <nav id="page_links">
             <a href="index.html">
                 <img src="../assets/home.svg" alt="home-icon">
@@ -32,6 +57,10 @@
             </a>
         </nav>
     </header>
+
+    <!-- =========================================================
+         EN-TÊTE DE SECTION
+    ========================================================== -->
     <div class="main">
         <h1>
             Notre Protfolio
@@ -39,6 +68,7 @@
         Découvrez nos réalisations et laissez-vous inspirer par nos projets les plus
         remarquables
 
+        <!-- Filtres de catégorie — "actual" = filtre sélectionné -->
         <div id="categories">
             <div class="actual">Tous</div>
             <div>Vidéos</div>
@@ -47,11 +77,19 @@
             <div>Méca</div>
         </div>
     </div>
+
+    <!-- =========================================================
+         GRILLE DE CARTES PORTFOLIO
+         Carte modèle — clonée 8 fois par script_cards.js
+    ========================================================== -->
     <div class="main">
-        
         <div class="cards">
             <div class="card">
+
+                <!-- Image illustrant le projet -->
                 <img src="assets/New Website Blue Mockup Instagram - Laptop 1.png" alt="pc-interface" class="illustrating">
+
+                <!-- Méta-infos : catégorie et date -->
                 <div class="infos-card">
                     <span class="category">Design graphique</span>
                     <span>
@@ -59,14 +97,20 @@
                         22 fev 2024
                     </span>
                 </div>
+
+                <!-- Description du projet -->
                 <div class="description">
                     <h4>Interface Dashboard Analytics</h4>
                     Design d'une interface de tableau de bord moderne pour l'analyse de données en temps réel.
                 </div>
+
+                <!-- Nom du client -->
                 <div class="client">
                     <img src="assets/User.png" alt="person">
                     Client : Mr Personne
                 </div>
+
+                <!-- Outils / logiciels utilisés -->
                 <div class="softwares">
                     <span>Figma</span>
                     <span>Sketch</span>
@@ -75,7 +119,13 @@
             </div>
         </div>
     </div>
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
     <footer id="footer">
+
+        <!-- Colonne 1 : Logo + description -->
         <div>
             <div class="logo">
                 <img src="assets/logo.png" alt="logo-hkim">
@@ -84,6 +134,8 @@
             en montage vidéo, design graphique, développement digital et
             mécanique de précision.
         </div>
+
+        <!-- Colonne 2 : Services -->
         <div>
             <h3>
                 Service
@@ -93,6 +145,8 @@
             Developpement web & mobile <br />
             Mécanique
         </div>
+
+        <!-- Colonne 3 : Contact -->
         <div>
             <h3>
                 Contact
@@ -108,8 +162,12 @@
             </div>
         </div>
     </footer>
+
+    <!-- Clonage automatique des cartes (x8) -->
     <script src="script_cards.js"></script>
+    <!-- Marquage du lien actif -->
     <script src="page.js"></script>
+
 </body>
 
 </html>

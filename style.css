@@ -1,7 +1,34 @@
+/* =============================================================================
+   style.css — Feuille de style principale du site HKIM
+   =============================================================================
+   Table des matières :
+     1. Debug (commenté)
+     2. Animations (@keyframes)
+     3. Classes utilitaires
+     4. Styles de base  (body, h1, button, a)
+     5. En-tête / Navigation
+     6. Section Hero
+     7. Section Expertise
+     8. Section CTA Footer
+     9. Pied de page (footer)
+    10. Pages Services & Portfolio  (layout partagé : .main, #categories, .cards, .card)
+    11. Media Queries (responsive)
+   ============================================================================= */
+
+
+/* =============================================================================
+   1. DEBUG  (décommenter pour visualiser tous les éléments)
+   ============================================================================= */
 /* {
     border: 1px yellowgreen solid;
-}*/
+} */
 
+
+/* =============================================================================
+   2. ANIMATIONS
+   ============================================================================= */
+
+/* Fondu vers le bas au chargement de la page (appliqué sur body) */
 @keyframes fadeIn {
     0% {
         transform: translateY(-8%);
@@ -19,6 +46,7 @@
     }
 }
 
+/* Glissement depuis la gauche — utilisé par #infos-hero via script.js */
 @keyframes slideRight {
     0% {
         transform: translateX(-15%);
@@ -31,6 +59,7 @@
     }
 }
 
+/* Glissement depuis la droite — utilisé par #card-hero via script.js */
 @keyframes slideLeft {
     0% {
         transform: translateX(15%);
@@ -43,13 +72,34 @@
     }
 }
 
+
+/* =============================================================================
+   3. CLASSES UTILITAIRES
+   ============================================================================= */
+
+/* Masque un élément (utilisé avant les animations d'entrée) */
 .hide {
     opacity: 0;
 }
 
-.transparent-link{
+/* Rend le texte d'un lien transparent (pour effets spéciaux) */
+.transparent-link {
     -webkit-text-fill-color: transparent;
 }
+
+/* Classe appliquée dynamiquement par script.js pour déclencher l'animation */
+.slideRight {
+    animation: slideRight normal 1s ease-out;
+}
+
+.slideLeft {
+    animation: slideLeft normal 1s ease-out;
+}
+
+
+/* =============================================================================
+   4. STYLES DE BASE
+   ============================================================================= */
 
 body {
     font-family: sans-serif;
@@ -63,26 +113,71 @@ body {
     -ms-word-wrap: break-word;
 }
 
+/* Titres principaux avec dégradé bleu → noir */
+h1 {
+    background: -webkit-linear-gradient(right, black 25%, rgba(23, 166, 222, 1) 75%);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    font-size: 4em;
+    font-weight: bold;
+    width: fit-content;
+    margin: 0;
+}
+
+/* Styles communs à tous les boutons */
+button {
+    border: none;
+    transition: all .5s ease;
+}
+
+/* Effet hover sur les boutons */
+button:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    filter: brightness(90%);
+    transition: all .3s ease-out;
+}
+
+/* Effet hover sur les liens */
+a:hover {
+    transform: scale(1.05);
+    transition: all .3s ease-out;
+}
+
+/* Effet clic sur les boutons */
+button:active {
+    filter: brightness(70%);
+}
+
+
+/* =============================================================================
+   5. EN-TÊTE / NAVIGATION
+   ============================================================================= */
+
 header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: .4rem 5rem.2rem 5rem;
+    padding: .4rem 5rem .2rem 5rem;
     background-color: white;
     margin: 0;
 }
 
+/* Conteneur de la barre de navigation */
 #page_links {
     display: flex;
     gap: 1em;
 }
 
+/* Icônes dans les liens de navigation */
 #page_links img {
     width: 20px;
     color: white;
 }
 
+/* Liens de navigation individuels (forme pilule) */
 #page_links a {
     display: flex;
     justify-content: center;
@@ -97,43 +192,20 @@ header {
     color: black;
 }
 
+/* Couleur du texte pour le lien actif déjà visité */
 #page_links a[class="actual"]:visited {
     color: white;
 }
 
-h1 {
-    background: -webkit-linear-gradient(right, black 25%, rgba(23, 166, 222, 1) 75%);
-    -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;
-    background-clip: text;
-    font-size: 4em;
-    font-weight: bold;
-    width: fit-content;
-    margin: 0;
+/* Icône du lien actif en blanc (pour contraster avec le fond noir) */
+.actual img {
+    filter: brightness(0) saturate(100%) invert(100%) sepia(100%) hue-rotate(200deg);
 }
 
-button {
-    border: none;
-    transition: all .5s ease;
-}
 
-button:hover
-{
-    cursor: pointer;
-    transform: scale(1.05);
-    filter: brightness(90%);
-    transition: all .3s ease-out;
-}
-
-a:hover
-{
-    transform: scale(1.05);
-    transition: all .3s ease-out;
-}
-
-button:active{
-    filter: brightness(70%);
-}
+/* =============================================================================
+   6. SECTION HERO  (home.php uniquement)
+   ============================================================================= */
 
 #hero-section {
     display: flex;
@@ -148,6 +220,7 @@ button:active{
     position: relative;
 }
 
+/* Fondu blanc en bas de la section hero (transition vers la section suivante) */
 #hero-section::before {
     content: '';
     position: absolute;
@@ -159,19 +232,13 @@ button:active{
     pointer-events: none;
 }
 
-.slideRight {
-    animation: slideRight normal 1s ease-out;
-}
-
-.slideLeft {
-    animation: slideLeft normal 1s ease-out;
-}
-
+/* Titre hero sans dégradé global (surcharge du style h1) */
 #main-text-hero {
     background: none;
     -webkit-text-fill-color: black;
 }
 
+/* Mot mis en valeur dans le titre hero (dégradé cyan) */
 #main-text-hero span {
     background: -webkit-linear-gradient(right, white -70%, rgba(11, 194, 245, 1) 50%);
     -webkit-text-fill-color: transparent;
@@ -179,6 +246,7 @@ button:active{
     background-clip: text;
 }
 
+/* Sous-titre de la section hero */
 #sub-text-hero {
     font-size: 1.4rem;
     font-weight: 400;
@@ -186,6 +254,7 @@ button:active{
     width: fit-content;
 }
 
+/* Colonne gauche de la section hero (texte + boutons + stats) */
 #infos-hero {
     max-width: 53%;
     display: flex;
@@ -193,8 +262,7 @@ button:active{
     gap: 1em;
 }
 
-
-
+/* Boutons CTA — styles communs */
 .button {
     font-weight: 600;
     font-size: large;
@@ -204,12 +272,13 @@ button:active{
     margin: 0 .5rem;
 }
 
-
+/* Bouton primaire (fond noir) */
 .btn-1 {
     background-color: black;
     color: white;
 }
 
+/* Flèche dans le bouton primaire — légèrement élargie */
 .btn-1 span {
     display: inline-block;
     transform: scaleX(1.3);
@@ -217,6 +286,7 @@ button:active{
     margin-left: 0.3em;
 }
 
+/* Bouton secondaire (fond blanc avec bordure) */
 .btn-2 {
     background-color: white;
     color: black;
@@ -224,6 +294,7 @@ button:active{
     border-radius: .5rem;
 }
 
+/* Bloc de statistiques clés (clients, projets, expérience) */
 #mentions {
     font-weight: 100;
     font-size: .8rem;
@@ -243,11 +314,13 @@ button:active{
     width: fit-content;
 }
 
+/* Chiffre mis en valeur dans les statistiques */
 #mentions span {
     font-weight: 900;
     font-size: 1rem;
 }
 
+/* Carte visuelle droite de la section hero */
 #card-hero {
     display: flex;
     padding: 2rem 4rem;
@@ -261,7 +334,7 @@ button:active{
     box-shadow: 1em 1em 5em rgba(0, 0, 0, 0.521);
 }
 
-
+/* Grille 2x2 des icônes de domaine dans la carte hero */
 #card-hero-main {
     display: grid;
     grid: auto auto / auto auto;
@@ -269,6 +342,7 @@ button:active{
     width: fit-content;
 }
 
+/* Chaque cellule de la grille (icône + libellé) */
 #card-hero-main > div {
     display: flex;
     flex-wrap: wrap;
@@ -276,6 +350,11 @@ button:active{
     align-items: center;
     gap: 1rem;
 }
+
+
+/* =============================================================================
+   7. SECTION EXPERTISE  (home.php uniquement)
+   ============================================================================= */
 
 #expertise-section {
     position: relative;
@@ -292,12 +371,14 @@ button:active{
     margin: .3em 0;
 }
 
+/* Sous-titre de la section expertise */
 #sub-text-expertise {
     font-size: xx-large;
     margin-bottom: .7em;
     text-align: center;
 }
 
+/* Grille 1x4 des cartes d'expertise */
 #cards-expertise {
     display: grid;
     grid: auto / auto auto auto auto;
@@ -305,6 +386,7 @@ button:active{
     padding: 1rem 5rem;
 }
 
+/* Style commun aux cartes d'expertise (home) et aux cartes service/portfolio */
 .card-expertise,
 .card {
     background-color: rgba(255, 255, 255, 0.884);
@@ -321,6 +403,7 @@ button:active{
     border-radius: .5rem;
 }
 
+/* Ligne titre + icône dans une carte d'expertise */
 .text-1 {
     font-weight: 700;
     font-size: 1.5rem;
@@ -330,10 +413,12 @@ button:active{
     gap: .8em;
 }
 
+/* Liste des points forts dans une carte d'expertise */
 .pros {
     margin-bottom: 4em;
 }
 
+/* Chaque ligne de checklist (icône + texte) */
 .pros div,
 #details div {
     display: flex;
@@ -341,11 +426,12 @@ button:active{
     gap: .2rem;
 }
 
-/*.pros img
-{
+/* Commenté : couleur verte sur les icônes de check
+.pros img {
     filter: invert(50%) sepia(100%) saturate(350%) hue-rotate(80deg);
-}*/
+} */
 
+/* Bouton "Voir tous nos services" */
 #all-services {
     background-color: rgba(23, 166, 222, 1);
     color: white;
@@ -355,6 +441,11 @@ button:active{
     border-radius: .3em;
     margin: 1rem 0;
 }
+
+
+/* =============================================================================
+   8. SECTION CTA FOOTER  (home.php uniquement)
+   ============================================================================= */
 
 #footer-section {
     background: linear-gradient(to top, rgba(34, 34, 34, 1), rgba(70, 68, 68, 1));
@@ -367,6 +458,7 @@ button:active{
     color: rgb(196, 196, 196);
 }
 
+/* Titre de la section CTA (surcharge du h1 global) */
 #footer-section h1 {
     width: fit-content;
     background: none;
@@ -374,12 +466,13 @@ button:active{
     text-align: center;
 }
 
+/* Conteneur des deux boutons CTA */
 #footer-section div {
     display: flex;
     gap: 1.5em;
-
 }
 
+/* Boutons de la section CTA */
 #footer-section button {
     font-size: large;
     border-radius: .5rem;
@@ -387,6 +480,11 @@ button:active{
     font-weight: 100;
     padding: .5rem 1rem;
 }
+
+
+/* =============================================================================
+   9. PIED DE PAGE (footer.php)
+   ============================================================================= */
 
 #footer {
     background-color: black;
@@ -399,11 +497,13 @@ button:active{
     padding: 2em 12em 7em 12em;
 }
 
+/* Assure le retour à la ligne du texte long dans le footer */
 #footer {
-  white-space: normal;       /* allow text wrapping */
-  overflow-wrap: break-word; /* break long words/URLs */
+    white-space: normal;       /* autoriser le retour à la ligne */
+    overflow-wrap: break-word; /* couper les mots/URLs trop longs */
 }
 
+/* Colonnes du footer (branding, services, contact) */
 #footer > div {
     display: flex;
     flex-direction: column;
@@ -412,19 +512,26 @@ button:active{
     width: 25%;
 }
 
+/* Ligne contact (icône + texte) dans le footer */
 #footer div div {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 2rem;
-
 }
 
+/* Icônes téléphone / localisation dans le footer */
 .footer-icon {
     width: min-content;
     height: min-content;
 }
 
+
+/* =============================================================================
+   10. PAGES SERVICES & PORTFOLIO  (layout partagé)
+   ============================================================================= */
+
+/* Conteneur centré utilisé sur services.php et portfolio.php */
 .main {
     display: flex;
     flex-direction: column;
@@ -434,6 +541,7 @@ button:active{
     margin: 2em 0;
 }
 
+/* Barre de filtres par catégorie */
 #categories {
     display: flex;
     justify-content: space-around;
@@ -448,35 +556,35 @@ button:active{
     transform: scale(.9);
 }
 
+/* Chaque filtre de catégorie */
 #categories div {
     padding: 1rem 2rem;
     border-radius: .8rem;
     margin: .3rem .5rem;
 }
 
+/* Filtre actif (fond noir, texte blanc, légèrement agrandi) */
 .actual {
     background-color: black;
     color: white;
     transform: scale(1.1);
 }
 
-.actual img {
-    filter: brightness(0) saturate(100%) invert(100%) sepia(100%) hue-rotate(200deg);
-
-}
-
+/* Grille des cartes (3 colonnes par défaut) */
 .cards {
     display: grid;
     gap: 2em;
     grid-template-columns: auto auto auto;
 }
 
+/* Surcharge des styles communs .card-expertise / .card pour les pages services/portfolio */
 .card {
     padding: 1.5rem 1.8rem;
     max-width: 17rem;
     gap: 1em;
 }
 
+/* Badge de catégorie dans les cartes portfolio */
 .category {
     font-weight: bold;
     font-size: larger;
@@ -484,6 +592,7 @@ button:active{
     text-align: center;
 }
 
+/* Ligne délai / prix dans les cartes service */
 .date {
     display: flex;
     justify-content: space-between;
@@ -500,22 +609,26 @@ button:active{
     gap: 2px;
 }
 
+/* Libellé "Inclus" dans les cartes service */
 .include {
     font-weight: bold;
 }
 
+/* Conteneur du bouton "Demander un devis" dans les cartes service */
 .btnSvc {
     width: 100%;
     display: flex;
     justify-content: center;
 }
 
+/* Liste des prestations incluses dans les cartes service */
 #details {
     display: flex;
     flex-direction: column;
     align-items: start;
 }
 
+/* Bouton dans les cartes (fond noir) */
 .card button {
     font-size: medium;
     background-color: black;
@@ -524,37 +637,44 @@ button:active{
     border-radius: .3rem;
 }
 
+/* Flèche dans le bouton des cartes — légèrement élargie */
 .card button span {
     width: fit-content;
     display: inline-block;
     transform: scaleX(1.2);
 }
 
+/* Ligne catégorie + date dans les cartes portfolio */
 .infos-card {
     width: 100%;
     display: flex;
     justify-content: space-between;
 }
 
+/* Icône de vérification (check) dans les listes de prestations */
 .check-icon {
     width: 2rem;
     filter: invert(50%) sepia(100%) saturate(400%) hue-rotate(110deg);
 }
 
+/* Icône horloge dans les cartes service (légèrement transparente) */
 .clock-icon {
     opacity: 45%;
 }
 
+/* Image illustrative pleine largeur dans les cartes portfolio */
 .illustrating {
     width: 100%;
 }
 
+/* Alignement horizontal de .infos-card et de ses enfants <span> */
 .infos-card,
 .infos-card span {
     display: flex;
     align-items: center;
 }
 
+/* Badge de catégorie (style pilule coloré cyan) — surcharge du .category bold */
 .category {
     border-radius: 1rem;
     color: hsla(197, 81%, 48%, 1);
@@ -563,11 +683,13 @@ button:active{
     padding: 2px 3px;
 }
 
+/* Ligne client dans les cartes portfolio */
 .client {
     display: flex;
     align-items: center;
 }
 
+/* Badges outils/logiciels dans les cartes portfolio */
 .softwares span {
     border-radius: 1rem;
     color: black;
@@ -577,23 +699,32 @@ button:active{
 }
 
 
+/* =============================================================================
+   11. MEDIA QUERIES  (responsive design)
+   ============================================================================= */
+
+/* ---- ≤ 1200px : tablettes larges / petits écrans bureau ---- */
 @media screen and (max-width: 1200px) {
     #cards-expertise {
         display: grid;
-        grid: auto auto / auto auto;
+        grid: auto auto / auto auto; /* 2 colonnes au lieu de 4 */
         gap: 3rem;
         padding: 1rem 3rem;
     }
-    #sub-text-expertise{
+
+    #sub-text-expertise {
         font-size: x-large;
     }
-    #hero-section{
+
+    #hero-section {
         padding: 5em 7em 10em 7em;
     }
+
     .button {
         margin: 0.15rem .5rem;
     }
 
+    /* Répétition de la règle cards-expertise (présente dans l'original) */
     #cards-expertise {
         display: grid;
         grid: auto auto / auto auto;
@@ -619,40 +750,50 @@ button:active{
     #expertise-section {
         padding-bottom: .7rem;
     }
-    #mentions{
+
+    #mentions {
         gap: .5rem;
         font-size: .7rem;
     }
-    #mentions div{
+
+    #mentions div {
         gap: .2rem;
     }
-    #card-hero{
+
+    #card-hero {
         padding: 1.5rem 2rem;
     }
-    #card-hero-main{
+
+    #card-hero-main {
         gap: 1.8rem;
     }
-    #footer-section{
+
+    #footer-section {
         padding: 2.5em 1.5em;
     }
-    header{
-        padding: .4rem 2rem.2rem 2rem;
+
+    header {
+        padding: .4rem 2rem .2rem 2rem;
     }
-    .cards{
-        grid: auto auto / auto auto;
+
+    .cards {
+        grid: auto auto / auto auto; /* 2 colonnes */
     }
 }
 
 
+/* ---- ≤ 1000px : réservé pour ajouts futurs ---- */
 @media screen and (max-width: 1000px) {
-    
+
 }
 
-@media screen and (max-width: 900px) {
 
+/* ---- ≤ 900px : tablettes portrait ---- */
+@media screen and (max-width: 900px) {
     #footer > div {
         width: 60%;
     }
+
     #footer-section h1 {
         font-size: 2em;
     }
@@ -660,104 +801,133 @@ button:active{
     .button {
         font-size: medium;
     }
-    h1{
+
+    h1 {
         font-size: 3em;
     }
-    .main{
+
+    .main {
         font-size: medium;
     }
-    #categories{
-        gap: .7rem;
-    padding: .3rem 1rem;
-    margin: 1.5rem 0;
-    transform: scale(.8);
-    }
 
+    #categories {
+        gap: .7rem;
+        padding: .3rem 1rem;
+        margin: 1.5rem 0;
+        transform: scale(.8);
+    }
 }
 
+
+/* ---- ≤ 800px : mobile large / tablette étroite ---- */
 @media screen and (max-width: 800px) {
-    #hero-section{
+    /* Hero passe en colonne */
+    #hero-section {
         flex-direction: column;
         padding-right: 0;
         padding-left: 0;
     }
-    #main-text-hero{
+
+    #main-text-hero {
         font-size: 4em;
     }
-    #sub-text-hero{
+
+    #sub-text-hero {
         font-size: 1.5em;
     }
-    #infos-hero{
+
+    #infos-hero {
         align-items: center;
         max-width: 90%;
     }
-    #hero-section{
+
+    #hero-section {
         padding-bottom: 3em;
     }
-    #all-services{
+
+    #all-services {
         font-size: 1.8em;
     }
-    #footer-section button{
+
+    #footer-section button {
         font-size: medium;
         padding: .3rem .7rem;
     }
-    
-    .cards{
+
+    .cards {
         gap: .7rem;
     }
 }
 
-@media screen and (max-width: 780px){
-    #page_links{
+
+/* ---- ≤ 780px : ajustements navigation et mise en page ---- */
+@media screen and (max-width: 780px) {
+    #page_links {
         gap: .5em;
     }
-#page_links a {
-    border-radius: 5em;
-    transform: scale(0.9);
-}
-#footer-section div{
-    flex-direction: column;
-    gap: .5rem;
-}
-#cards-expertise {
+
+    #page_links a {
+        border-radius: 5em;
+        transform: scale(0.9);
+    }
+
+    /* Boutons CTA en colonne */
+    #footer-section div {
+        flex-direction: column;
+        gap: .5rem;
+    }
+
+    /* Cards expertise en une seule colonne */
+    #cards-expertise {
         display: grid;
         grid: auto / auto;
         gap: 3rem;
         padding: 1rem 3rem;
     }
-    .card-expertise{
-    padding: 1rem 1.5rem 0 1rem;
-    gap: 1em;
-}
-.card{
-    gap: .5rem;
-    padding: .5rem 1rem;
-    font-size: small;
-}
-.main{
-    font-size: small;
-}
-.logo
-{
-    transform: scale(.8);
-}
-header{
-        padding: .4rem 0rem ;
+
+    .card-expertise {
+        padding: 1rem 1.5rem 0 1rem;
+        gap: 1em;
+    }
+
+    .card {
+        gap: .5rem;
+        padding: .5rem 1rem;
+        font-size: small;
+    }
+
+    .main {
+        font-size: small;
+    }
+
+    .logo {
+        transform: scale(.8);
+    }
+
+    /* Header en flex-wrap pour les très petits écrans */
+    header {
+        padding: .4rem 0rem;
         justify-content: center;
         flex-wrap: wrap;
     }
-    #footer{
-        flex-direction: column;align-items: center;
+
+    /* Footer en colonne centrée */
+    #footer {
+        flex-direction: column;
+        align-items: center;
     }
+
     #footer > div {
         max-width: 25em;
     }
-    
-    .cards{
+
+    /* Grille de cartes en une seule colonne */
+    .cards {
         grid: auto auto / auto;
         gap: 1rem;
     }
-    #categories{
+
+    #categories {
         flex-wrap: wrap;
         gap: .2rem;
         padding: .2rem;
@@ -765,53 +935,69 @@ header{
     }
 }
 
-@media screen and (max-width: 350px){
-    #card-hero-main{
-        grid: auto/auto
-    }
-}
-@media screen and (max-width: 480px){
-    #page_links a span{
+
+/* ---- ≤ 480px : petits mobiles ---- */
+@media screen and (max-width: 480px) {
+    #page_links a span {
         font-weight: 600;
-    font-size: small;
+        font-size: small;
     }
-    #page_links{
+
+    #page_links {
         gap: 0;
         flex-wrap: wrap;
     }
-    #page_links a{
+
+    #page_links a {
         gap: .1rem;
         padding: .5rem;
     }
-    #main-text-hero{
+
+    #main-text-hero {
         font-size: 2em;
     }
-    #sub-text-hero{
+
+    #sub-text-hero {
         font-size: 1.1em;
     }
-    .button{
+
+    .button {
         font-size: .8rem;
         margin: 0;
         padding: .3rem .7rem;
     }
-    #card-hero{
+
+    #card-hero {
         padding: 1rem 1.3rem;
         font-size: .7rem;
     }
-    #card-hero-main{
+
+    #card-hero-main {
         gap: 1rem;
     }
-    #sub-text-expertise{
+
+    #sub-text-expertise {
         font-size: large;
     }
-    #all-services{
+
+    #all-services {
         font-size: 1.3em;
     }
-    #footer-section{
+
+    #footer-section {
         font-size: medium;
     }
+
     #footer {
         padding: 0;
         padding-bottom: 2rem;
+    }
+}
+
+
+/* ---- ≤ 350px : très petits mobiles (grille hero passe en 1 colonne) ---- */
+@media screen and (max-width: 350px) {
+    #card-hero-main {
+        grid: auto / auto; /* 1 colonne */
     }
 }
